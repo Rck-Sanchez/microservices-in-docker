@@ -1,0 +1,28 @@
+version: '2.2'
+services:
+    microservicemessage:
+        container_name: microservicemessage
+        build:
+            context: .
+            dockerfile: Dockerfile-msm
+        image: microservicemessage:latest
+        expose:
+            - 8080
+        ports:
+            - 8080:8080
+
+    microservicemessageconsumer:
+        container_name: microservicemessageconsumer
+        build:
+            context: .
+            dockerfile: Dockerfile-mscm
+        image: microservicemessageconsumer:latest
+        expose:
+            - 8081
+        ports:
+            - 8081:8081
+        links:
+            - microservicemessage:microservicemessage
+        depends_on:
+            - microservicemessage
+

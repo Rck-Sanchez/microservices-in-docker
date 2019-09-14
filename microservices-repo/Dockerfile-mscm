@@ -1,0 +1,6 @@
+FROM alpine-jdk:base
+WORKDIR ./files
+EXPOSE 8080
+COPY ./files/hello-consumer-1.0-SNAPSHOT.jar /var/lib/docker
+ADD ./files/hello-consumer-microservice-message-1.0-SNAPSHOT.jar app.jar
+CMD ["java", "-jar", "app.jar"]
